@@ -432,7 +432,7 @@ impl TextWrapper {
                     fragments.push(LineFragment::text(&line_str[offset..]));
                 }
                 line_wrapper
-                    .wrap_line(&fragments, wrap_width, gpui::IndentAdjustment::SameIndent)
+                    .wrap_line(&fragments, wrap_width)
                     .collect()
             },
         );
