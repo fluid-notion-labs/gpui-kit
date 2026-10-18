@@ -4,14 +4,34 @@ use quote::quote;
 
 /// Resolve the consumer's GPUI API, preferring the Kit facade over a direct engine.
 pub(crate) fn gpui() -> syn::Result<TokenStream> {
-    for package in ["gpui-kit", "gpui-pre", "gpui-fast"] {
+    for package in ["gpui-kit", "gpui-pre"] {
+        if let Ok(found) = crate_name(package) {
+            return Ok(found_crate_path(found));
+        }
+    }
+    // `gpui-fast` is an optional dependency wherever it appears, and
+    // proc-macro-crate reports optional deps whether or not the feature is
+    // enabled — so gate it on the feature Cargo exposes to proc macros.
+    // Without this, e.g. `gpui-component` without its `gpui-fast` feature
+    // resolves here and expands to paths into a crate that is not compiled.
+    if std::env::var_os("CARGO_FEATURE_GPUI_FAST").is_some()
+        && let Ok(found) = crate_name("gpui-fast")
+    {
+        return Ok(found_crate_path(found));
+    }
+    // Fall back to the engine itself: crates like gpui-component depend
+    // directly on `gpui` (which may be a renamed/forked package).
+    // proc-macro-crate keys the lookup by *package* name, so check both the
+    // upstream name and the fork's (dep key `gpui`, package
+    // `gpui-unofficial`); either way it returns the dep key to use in code.
+    for package in ["gpui", "gpui-unofficial"] {
         if let Ok(found) = crate_name(package) {
             return Ok(found_crate_path(found));
         }
     }
     Err(syn::Error::new(
         Span::call_site(),
-        "IntoPlot requires a direct dependency on gpui-kit, gpui-pre, or gpui-fast",
+        "IntoPlot requires a direct dependency on gpui-kit, gpui-pre, gpui-fast, or gpui",
     ))
 }
 

@@ -48,9 +48,17 @@ pub(crate) fn init(cx: &mut App) {
         });
     });
 
-    cx.register_inspector_element(|window, cx| {
-        let div_inspector = cx.new(|cx| DivInspector::new(window, cx));
+    // The fork's register_inspector_element takes the per-element closure
+    // directly (no factory form), and init has no window to build the
+    // DivInspector with — so create it lazily on the first inspection.
+    cx.register_inspector_element({
+        let div_inspector: Rc<std::cell::RefCell<Option<Entity<DivInspector>>>> =
+            Rc::new(std::cell::RefCell::new(None));
         move |id, state: &DivInspectorState, window: &mut Window, cx: &mut App| {
+            let div_inspector = div_inspector
+                .borrow_mut()
+                .get_or_insert_with(|| cx.new(|cx| DivInspector::new(window, cx)))
+                .clone();
             div_inspector.update(cx, |this, cx| {
                 this.update_inspected_element(id, state.clone(), window, cx);
                 this.render(window, cx).into_any_element()
