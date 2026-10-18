@@ -28,7 +28,7 @@ harness = false
 gpui-fast = ["dep:gpui-fast"]
 decimal = ["dep:rust_decimal"]
 test-support = ["gpui/test-support", "gpui-fast?/test-support"]
-inspector = ["gpui_macros/inspector", "gpui/inspector", "gpui-fast?/inspector"]
+inspector = ["gpui_macros/inspector", "gpui-fast?/inspector"]
 
 [dependencies]
 anyhow.workspace = true
