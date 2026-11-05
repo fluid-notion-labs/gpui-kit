@@ -66,8 +66,8 @@ story = { path = "crates/story" }
 # onto a newer snapshot that gpui-component did not compile with (#3156). Bump
 # every snapshot crate together with its Cargo.lock entry; `script/check-gpui-pin.ts`
 # fails CI when a pin is not exact.
-gpui = { package = "gpui-unofficial", path = "../gpui-unofficial/crates/gpui" }
-gpui_platform = { package = "gpui-platform-gpui-unofficial", path = "../gpui-unofficial/crates/gpui_platform", features = ["font-kit", "x11", "wayland", "runtime_shaders"] }
+gpui = { package = "gpui-unofficial", git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+gpui_platform = { package = "gpui-platform-gpui-unofficial", git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba", features = ["font-kit", "x11", "wayland", "runtime_shaders"] }
 gpui_web = { package = "gpui-pre-web", version = "=0.3.9" }
 # Fast is optional; existing crates select it through their gpui-fast feature.
 # Explicit package fields make Cargo use these dependency keys as Rust crate names;
@@ -75,9 +75,9 @@ gpui_web = { package = "gpui-pre-web", version = "=0.3.9" }
 gpui-fast = { package = "gpui-fast", version = "0.1.7", features = ["windows-manifest-provided-by-host"] }
 gpui-fast-platform = { package = "gpui-fast-platform", version = "0.1.7", features = ["font-kit", "x11", "wayland", "runtime_shaders"] }
 gpui-fast-web = { package = "gpui-fast-web", version = "0.1.7" }
-gpui_macros = { package = "gpui-macros-gpui-unofficial", path = "../gpui-unofficial/crates/gpui-macros-gpui-unofficial" }
+gpui_macros = { package = "gpui-macros-gpui-unofficial", git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
 reqwest_client = { package = "gpui-pre-reqwest-client", version = "=0.3.9" }
-sum-tree = { package = "sum-tree-gpui-unofficial", path = "../gpui-unofficial/crates/sum-tree-gpui-unofficial" }
+sum-tree = { package = "sum-tree-gpui-unofficial", git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
 reqwest = { package = "gpui-pre-reqwest", version = "=0.12.15", default-features = false, features = [
     "charset",
     "http2",
@@ -190,31 +190,31 @@ strip = "symbols"
 # Keep the vendored gpui-unofficial 1.20.0-pre closure pinned: the fork's
 # own [patch.crates-io] does not propagate through path dependencies,
 # so mirror it here with paths rewritten out of the vendor tree.
-collections-gpui-unofficial = { path = "../gpui-unofficial/crates/collections-gpui-unofficial" }
-derive-refineable-gpui-unofficial = { path = "../gpui-unofficial/crates/derive-refineable-gpui-unofficial" }
-gpui-apple-gpui-unofficial = { path = "../gpui-unofficial/crates/gpui-apple-gpui-unofficial" }
-gpui-linux-gpui-unofficial = { path = "../gpui-unofficial/crates/gpui_linux" }
-gpui-macos-gpui-unofficial = { path = "../gpui-unofficial/crates/gpui-macos-gpui-unofficial" }
-gpui-macros-gpui-unofficial = { path = "../gpui-unofficial/crates/gpui-macros-gpui-unofficial" }
-gpui-platform-gpui-unofficial = { path = "../gpui-unofficial/crates/gpui_platform" }
-gpui-shared-string-gpui-unofficial = { path = "../gpui-unofficial/crates/gpui-shared-string-gpui-unofficial" }
-gpui-unofficial = { path = "../gpui-unofficial/crates/gpui" }
-gpui-util-gpui-unofficial = { path = "../gpui-unofficial/crates/gpui-util-gpui-unofficial" }
-gpui-web-gpui-unofficial = { path = "../gpui-unofficial/crates/gpui-web-gpui-unofficial" }
-gpui-wgpu-gpui-unofficial = { path = "../gpui-unofficial/crates/gpui_wgpu" }
-gpui-windows-gpui-unofficial = { path = "../gpui-unofficial/crates/gpui-windows-gpui-unofficial" }
-http-client-gpui-unofficial = { path = "../gpui-unofficial/crates/http-client-gpui-unofficial" }
-media-gpui-unofficial = { path = "../gpui-unofficial/crates/media-gpui-unofficial" }
-path-gpui-unofficial = { path = "../gpui-unofficial/crates/path-gpui-unofficial" }
-perf-gpui-unofficial = { path = "../gpui-unofficial/crates/perf-gpui-unofficial" }
-refineable-gpui-unofficial = { path = "../gpui-unofficial/crates/refineable-gpui-unofficial" }
-scheduler-gpui-unofficial = { path = "../gpui-unofficial/crates/scheduler-gpui-unofficial" }
-sum-tree-gpui-unofficial = { path = "../gpui-unofficial/crates/sum-tree-gpui-unofficial" }
-util-gpui-unofficial = { path = "../gpui-unofficial/crates/util-gpui-unofficial" }
-util-macros-gpui-unofficial = { path = "../gpui-unofficial/crates/util-macros-gpui-unofficial" }
-zlog-gpui-unofficial = { path = "../gpui-unofficial/crates/zlog-gpui-unofficial" }
-ztracing-gpui-unofficial = { path = "../gpui-unofficial/crates/ztracing-gpui-unofficial" }
-ztracing-macro-gpui-unofficial = { path = "../gpui-unofficial/crates/ztracing-macro-gpui-unofficial" }
+collections-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+derive-refineable-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+gpui-apple-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+gpui-linux-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+gpui-macos-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+gpui-macros-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+gpui-platform-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+gpui-shared-string-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+gpui-util-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+gpui-web-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+gpui-wgpu-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+gpui-windows-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+http-client-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+media-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+path-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+perf-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+refineable-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+scheduler-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+sum-tree-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+util-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+util-macros-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+zlog-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+ztracing-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
+ztracing-macro-gpui-unofficial = { git = "https://github.com/fluid-notion-labs/gpui-unofficial", rev = "41de37dbd0454bfa3039b871478599cf2dd3c9ba" }
 # LLRT's public modules still name their compatible binding dependency
 # `rquickjs`. Route those dependencies through a source-compatible facade so
 # the shell and LLRT share the exact same quickjs-jit types and VM.
